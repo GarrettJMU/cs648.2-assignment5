@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon -w server.js -w .env server.js",
     "lint": "eslint . --ext js,jsx --ignore-pattern public",
+    "lintfix": "eslint --fix . --ext js,jsx --ignore-pattern public ",
     "watch": "babel src --out-dir public --watch --verbose",
     "compile": "babel src --out-dir public"
   },

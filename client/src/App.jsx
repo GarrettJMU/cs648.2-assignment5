@@ -36,7 +36,7 @@ class ProductList extends React.Component {
 
     const data = await graphQLFetch(query);
 
-    data && this.setState({ products: data.productList });
+    if (data) this.setState({ products: data.productList });
   }
 
   async addProduct(product) {
@@ -48,7 +48,7 @@ class ProductList extends React.Component {
 
     const data = await graphQLFetch(query, { product });
 
-    data && this.loadData();
+    if (data) this.loadData();
   }
 
   render() {
@@ -72,13 +72,13 @@ function ProductTable({ products }) {
       <table>
         <thead>
           <tr>
-            {selectOptions.map((option, index) => <th key={index}>{option}</th>)}
+            {selectOptions.map(option => <th key={option}>{option}</th>)}
           </tr>
         </thead>
         <tbody>
-          {products.map((product, index) => {
-            <ProductRow product={product} index={index} key={index} />;
-          })}
+          {products.map((product, index) => (
+            <ProductRow product={product} index={index} key={product.id} />
+          ))}
         </tbody>
       </table>
     </React.Fragment>
@@ -86,7 +86,6 @@ function ProductTable({ products }) {
 }
 
 function ProductRow({ index, product }) {
-  console.log(product);
   return (
     <tr key={index}>
       <th>{product.Name}</th>
@@ -149,8 +148,8 @@ class ProductAdd extends React.Component {
             value={this.state.category}
             onChange={e => this.setState({ category: e.target.value })}
           >
-            {categoryValues.map((value, index) => (
-              <option value={value} key={index}>
+            {categoryValues.map(value => (
+              <option value={value} key={value}>
                 {value}
               </option>
             ))}

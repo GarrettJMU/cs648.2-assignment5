@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react';
 import ProductRow from './ProductRow.jsx';
 
-function ProductTable({ products }) {
-  const selectOptions = ['Product Name', 'Price', 'Category', 'Image'];
-
+const selectOptions = ['Product Name', 'Price', 'Category', 'Image'];
+function ProductTable({ products, deleteProduct }) {
   return (
     <Fragment>
       <h1>My Company Inventory</h1>
@@ -17,7 +16,7 @@ function ProductTable({ products }) {
         </thead>
         <tbody>
           {products.map((product, index) => (
-            <ProductRow product={product} index={index} key={product.id} />
+            <ProductRow product={product} index={index} key={product.id} deleteProduct={deleteProduct} />
           ))}
         </tbody>
       </table>

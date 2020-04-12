@@ -1,5 +1,3 @@
-scalar GraphQLDate
-
 type Product {
     _id: ID!
     id: Int!
@@ -24,12 +22,22 @@ input ProductInputs {
     Image: String
 }
 
+input ProductUpdateInputs {
+    Category: CategoryList
+    Name: String!
+    Price: Float
+    Image: String
+}
+
 ##### Top level declarations
 
 type Query {
     productList: [Product!]!
+    Product(id: Int!): Product!
 }
 
 type Mutation {
     productAdd(product: ProductInputs!): Product!
+    productUpdate(id: Int!, modify: ProductUpdateInputs!): Product!
+    productDelete(id: Int!): Boolean!
 }
